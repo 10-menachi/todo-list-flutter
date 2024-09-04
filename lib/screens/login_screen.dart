@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:todolist/utils/colors.dart';
 import 'package:todolist/utils/routes.dart';
 import 'package:todolist/widgets/custom_button.dart';
@@ -18,15 +19,18 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
 
   void login() {
-    // Check if the text fields are not empty
     if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
-      print("Please enter both email and password.");
+      Fluttertoast.showToast(
+        msg: "Fill in empty fields",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        backgroundColor: AppColors.primaryColor,
+        textColor: Colors.white,
+        fontSize: 16.0,
+        webPosition: "top",
+      );
       return;
     }
-
-    // Print the text from the controllers
-    print("Email: ${_emailController.text}");
-    print("Password: ${_passwordController.text}");
   }
 
   @override

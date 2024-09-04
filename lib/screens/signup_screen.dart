@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:todolist/utils/colors.dart';
 import 'package:todolist/utils/routes.dart';
 import 'package:todolist/widgets/custom_button.dart';
@@ -21,6 +22,18 @@ class _SignupScreenState extends State<SignupScreen> {
       TextEditingController();
 
   void signup() {
+    if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
+      Fluttertoast.showToast(
+        msg: "Fill in empty fields",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        backgroundColor: AppColors.primaryColor,
+        textColor: Colors.white,
+        fontSize: 16.0,
+        webPosition: "top",
+      );
+      return;
+    }
     print("Name: ${_nameController.text}");
     print("Email: ${_emailController.text}");
     print("Password: ${_passwordController.text}");
